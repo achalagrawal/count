@@ -1,6 +1,6 @@
 {
-  "short_name": "RMUIF",
-  "name": "RMUIF",
+  "short_name":"Count",
+  "name": "Count",
   "icons": [
     {
       "src": "favicon.ico",

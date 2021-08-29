@@ -85,8 +85,8 @@ class HomePage extends Component {
     return (
       <EmptyState
         image={<InsertBlockIllustration />}
-        title="RMUIF"
-        description="Supercharged version of Create React App with all the bells and whistles."
+        title="Count"
+        description="Count the number of times you have completed reading pages in a book. Sign In to begin."
       />
     );
   }

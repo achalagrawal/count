@@ -1,6 +1,6 @@
 # Count
 
-Count the number of pages that you have read in a book
+Count the number of times you have completed reading pages in a book
 
 
 ## Usage
