@@ -1,3 +1,4 @@
+rules_version = '2';
 service cloud.firestore {
   function isUserAuthenticated() {
     return request.auth != null;
@@ -24,12 +25,12 @@ service cloud.firestore {
   }
 
   match /databases/{database}/documents {
-    match /users/{userId} {
+    match /users/{userId}/{document=**} {
       allow get: if isUserAuthenticated();
       allow list: if isUserAuthenticated() && isUserAdmin();
     }
 
-    match /users/{userId} {
+    match /users/{userId}/{document=**} {
       allow create: if isUserAuthenticated() && isUserAuthorized(userId);
       allow update: if isUserAuthenticated() && isUserAuthorized(userId);
       allow delete: if isUserAuthenticated() && isUserAuthorized(userId);
