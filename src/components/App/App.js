@@ -24,6 +24,8 @@ const initialState = {
   userData: null,
   roles: [],
 
+  mobileOpen: false,
+  
   aboutDialog: {
     open: false,
   },
@@ -93,6 +95,13 @@ class App extends Component {
       },
       callback
     );
+  };
+
+  handleDrawerToggle = () => {
+    let prevState = this.state.mobileOpen;
+    this.setState({
+      mobileOpen: !prevState
+    })
   };
 
   openDialog = (dialogId, callback) => {
@@ -280,6 +289,7 @@ class App extends Component {
                     performingAction={performingAction}
                     theme={theme}
                     user={user}
+                    handleDrawerIcon={user?this.handleDrawerToggle:() => this.openDialog("signInDialog")}
                     userData={userData}
                     roles={roles}
                     onSignUpClick={() => this.openDialog("signUpDialog")}
@@ -290,6 +300,7 @@ class App extends Component {
                   />
                 }
                 openSnackbar={this.openSnackbar}
+                mobileOpen={{currentState:this.state.mobileOpen, toggle:this.handleDrawerToggle}}
               />
 
               <DialogHost

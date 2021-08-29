@@ -9,8 +9,8 @@ import { auth } from "../../firebase";
 import authentication from "../../services/authentication";
 
 import EmptyState from "../EmptyState";
+import BookList from "../BookList";
 
-import { ReactComponent as CabinIllustration } from "../../illustrations/cabin.svg";
 import { ReactComponent as InsertBlockIllustration } from "../../illustrations/insert-block.svg";
 
 class HomePage extends Component {
@@ -74,10 +74,8 @@ class HomePage extends Component {
 
     if (user) {
       return (
-        <EmptyState
-          image={<CabinIllustration />}
-          title="Home"
-          description="This is the home page. You can edit it from HomePage.js."
+        <BookList
+          mobileOpen={this.props.mobileOpen}
         />
       );
     }

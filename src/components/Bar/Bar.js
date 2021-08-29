@@ -18,7 +18,11 @@ import {
   Link,
 } from "@material-ui/core";
 
+
 import UserAvatar from "../UserAvatar";
+import MenuIcon from '@material-ui/icons/Menu';
+
+const drawerWidth = 240;
 
 class Bar extends Component {
   constructor(props) {
@@ -84,20 +88,35 @@ class Bar extends Component {
       },
     ];
 
+     {/* <AppBar position="fixed" className={classes.appBar}>
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            className={classes.menuButton}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap>
+            Responsive drawer
+          </Typography>
+        </Toolbar>
+      </AppBar> */}
+
     return (
       <AppBar color="primary" position="static">
         <Toolbar>
           <Box display="flex" flexGrow={1}>
-            <Typography color="inherit" variant="h6">
-              <Link
-                color="inherit"
-                component={RouterLink}
-                to="/"
-                underline="none"
-              >
-                {process.env.REACT_APP_TITLE}
-              </Link>
-            </Typography>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={this.props.handleDrawerIcon}
+          >
+            <MenuIcon />
+          </IconButton>
           </Box>
 
           {user && (
