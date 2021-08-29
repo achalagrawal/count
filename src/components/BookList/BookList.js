@@ -111,7 +111,7 @@ function BookList(props) {
       <div className={classes.toolbar} />
       <List dense>
         {bookList.map((book, index) => (
-          <ListItem button key={book.id} onClick={()=> setBookIndex(index)}>
+          <ListItem button key={book.id} onClick={()=> {setBookIndex(index);props.mobileOpen.toggle()}}>
             <ListItemText primary={`${index+1}. ${book.name}`} />
           </ListItem>
         ))}

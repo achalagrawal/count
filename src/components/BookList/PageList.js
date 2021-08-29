@@ -4,6 +4,7 @@ import { Fab, Box } from "@material-ui/core";
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Rating from '@material-ui/lab/Rating';
 import { Refresh as RefreshIcon } from "@material-ui/icons";
 import EmptyState from "../EmptyState";
 import Loader from "../Loader";
@@ -84,15 +85,27 @@ function PageList(props) {
         Object.keys(pages).sort().map((key, index) => 
           <ListItem button key={key}>
             <ListItemText primary={`Page ${key} : ${pages[key]}`} />
+            <Rating
+            name={key}
+          value={pages[key]}
+          onChange={(event, newValue) => {
+
+            firestore
+    .collection("users")
+    .doc(user.uid)
+    .collection("pages")
+    .doc(book.id)
+    .set({
+        [key]:newValue
+    },{ merge: true });
+          }}
+        />
           </ListItem>)
         }
         </List>
         )
     }
       
-
-  console.log(pages);
-
 return(
 <div>
     Test
