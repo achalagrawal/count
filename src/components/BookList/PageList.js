@@ -6,6 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Rating from '@material-ui/lab/Rating';
 import { Refresh as RefreshIcon } from "@material-ui/icons";
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import EmptyState from "../EmptyState";
 import Loader from "../Loader";
 import { ReactComponent as ErrorIllustration } from "../../illustrations/error.svg";
@@ -88,6 +89,7 @@ function PageList(props) {
             <Rating
             name={key}
           value={pages[key]}
+          icon={<CheckCircleIcon fontSize="inherit" />}
           onChange={(event, newValue) => {
 
             firestore
