@@ -9,6 +9,7 @@ import EmptyState from "../EmptyState";
 import Loader from "../Loader";
 import { ReactComponent as ErrorIllustration } from "../../illustrations/error.svg";
 
+const zeroPad = (num, places) => String(num).padStart(places, '0');
 
 function PageList(props) {
     const { book, user } = props;
@@ -61,9 +62,12 @@ function PageList(props) {
   }
 
   if (!pages) {
-    let obj = {
-        "pages":new Array(book.pages).fill(0)
-    };
+    const obj = {};
+    const len = book.pages.toString().length;
+    for (let i=1;i<=book.pages;i++)
+    {
+        obj[zeroPad(i,len)]=0;
+    }
 
     firestore
     .collection("users")
@@ -76,14 +80,16 @@ function PageList(props) {
   } else {
       return (
         <List dense>
-        {pages.pages.map((num, index) => (
-          <ListItem button key={index+1}>
-            <ListItemText primary={`Page ${index+1} : ${num}`} />
-          </ListItem>
-        ))}
-      </List>
-      )
-  } 
+        {
+        Object.keys(pages).sort().map((key, index) => 
+          <ListItem button key={key}>
+            <ListItemText primary={`Page ${key} : ${pages[key]}`} />
+          </ListItem>)
+        }
+        </List>
+        )
+    }
+      
 
   console.log(pages);
 
