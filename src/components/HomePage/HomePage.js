@@ -76,6 +76,7 @@ class HomePage extends Component {
       return (
         <BookList
           mobileOpen={this.props.mobileOpen}
+          user={this.props.user}
         />
       );
     }

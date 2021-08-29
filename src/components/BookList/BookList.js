@@ -1,16 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-import BookIcon from '@material-ui/icons/Book';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import PageList from './PageList';
 
 const drawerWidth = 240;
 
@@ -123,6 +120,7 @@ function BookList(props) {
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
+  const currentBook = bookList[bookIndex];
 
   return (
     <div className={classes.root}>
@@ -160,7 +158,11 @@ function BookList(props) {
         </Hidden>
       </nav>
       <main className={classes.content}>
-        <h2>{bookList[bookIndex].name}</h2>
+        <h2>{currentBook.name}</h2>
+        <PageList
+          book={currentBook}
+          user={props.user}
+          />
       </main>
     </div>
   );
