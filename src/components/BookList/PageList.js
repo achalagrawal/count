@@ -63,7 +63,7 @@ function PageList(props) {
     return <Loader />;
   }
 
-  if (!pages) {
+  if (!loading && typeof(pages) === 'undefined') {
     const obj = {};
     const len = book.pages.toString().length;
     for (let i=1;i<=book.pages;i++)
@@ -77,9 +77,8 @@ function PageList(props) {
     .collection("pages")
     .doc(book.id)
     .set(obj);
-    
     setPages(obj);
-  } else {
+  } else if (pages !== null) {
       return (
         <List dense>
         {
@@ -110,7 +109,7 @@ function PageList(props) {
       
 return(
 <div>
-    Test
+    Error
 </div>
 )
 }
