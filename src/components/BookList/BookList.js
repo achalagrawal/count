@@ -114,6 +114,7 @@ function BookList(props) {
           <ListItem button key={book.id} onClick={()=> {
             setBookIndex(index);
             if(props.mobileOpen.currentState) props.mobileOpen.toggle();
+            props.mobileOpen.setTitle(book.name);
             }}>
             <ListItemText primary={`${index+1}. ${book.name}`} />
           </ListItem>
@@ -161,7 +162,7 @@ function BookList(props) {
         </Hidden>
       </nav>
       <main className={classes.content}>
-        <h2>{currentBook.name}</h2>
+        <h2>Book: {currentBook.name}</h2>
         <PageList
           book={currentBook}
           user={props.user}

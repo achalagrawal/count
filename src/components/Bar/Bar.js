@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-
 import PropTypes from "prop-types";
-
 import { Link as RouterLink } from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from "@material-ui/core/styles";
 
 import {
   AppBar,
@@ -21,6 +21,19 @@ import {
 
 import UserAvatar from "../UserAvatar";
 import MenuIcon from '@material-ui/icons/Menu';
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  }
+});
+
 
 const drawerWidth = 240;
 
@@ -84,19 +97,26 @@ class Bar extends Component {
       },
     ];
 
+    const { classes } = this.props;
+
     return (
-      <AppBar color="primary" position="static">
+      <div className={classes.root}>
+      <AppBar color="primary" position="fixed">
         <Toolbar>
-          <Box display="flex" flexGrow={1}>
+          
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={this.props.handleDrawerIcon}
+            className={classes.menuButton}
           >
             <MenuIcon />
           </IconButton>
-          </Box>
+          <Typography variant="h6" className={classes.title}>
+            {this.props.title}
+          </Typography>
+          
 
           {user && (
             <>
@@ -190,6 +210,8 @@ class Bar extends Component {
           )}
         </Toolbar>
       </AppBar>
+      <Toolbar />
+      </div>
     );
   }
 }
@@ -210,4 +232,4 @@ Bar.propTypes = {
   onSignOutClick: PropTypes.func.isRequired,
 };
 
-export default Bar;
+export default withStyles(styles, { withTheme: true })(Bar);

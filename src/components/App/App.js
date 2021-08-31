@@ -25,6 +25,7 @@ const initialState = {
   roles: [],
 
   mobileOpen: false,
+  title: "Count",
   
   aboutDialog: {
     open: false,
@@ -103,6 +104,12 @@ class App extends Component {
       mobileOpen: !prevState
     })
   };
+
+  setTitle = (newTitle) => {
+    this.setState({
+      title:newTitle
+    });
+  }
 
   openDialog = (dialogId, callback) => {
     const dialog = this.state[dialogId];
@@ -289,6 +296,7 @@ class App extends Component {
                     performingAction={performingAction}
                     theme={theme}
                     user={user}
+                    title={this.state.title}
                     handleDrawerIcon={user?this.handleDrawerToggle:() => this.openDialog("signInDialog")}
                     userData={userData}
                     roles={roles}
@@ -300,7 +308,7 @@ class App extends Component {
                   />
                 }
                 openSnackbar={this.openSnackbar}
-                mobileOpen={{currentState:this.state.mobileOpen, toggle:this.handleDrawerToggle}}
+                mobileOpen={{currentState:this.state.mobileOpen, toggle: this.handleDrawerToggle, setTitle: this.setTitle}}
               />
 
               <DialogHost
