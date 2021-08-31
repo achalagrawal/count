@@ -74,10 +74,6 @@ class Bar extends Component {
         onClick: onAboutClick,
       },
       {
-        name: "Profile",
-        to: user ? `/user/${user.uid}` : null,
-      },
-      {
         name: "Settings",
         onClick: onSettingsClick,
       },
@@ -87,23 +83,6 @@ class Bar extends Component {
         onClick: onSignOutClick,
       },
     ];
-
-     {/* <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Responsive drawer
-          </Typography>
-        </Toolbar>
-      </AppBar> */}
 
     return (
       <AppBar color="primary" position="static">
