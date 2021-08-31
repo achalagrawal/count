@@ -65,6 +65,14 @@ function AboutDialog(props) {
               <ListItemText primary="UID" secondary={user.uid} />
             </ListItem>
           )}
+
+          <ListItem>
+              <ListItemText primary="Developers" secondary="Ankita and Achal" />
+          </ListItem>
+
+          <ListItem>
+              <ListItemText primary="Feedback Email" secondary="achal.xyz@gmail.com" />
+          </ListItem>
         </List>
       </DialogContent>
     </Dialog>
