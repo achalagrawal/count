@@ -22,6 +22,7 @@ import {
 import UserAvatar from "../UserAvatar";
 import MenuIcon from '@material-ui/icons/Menu';
 
+const drawerWidth = 240;
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -31,11 +32,14 @@ const styles = theme => ({
   },
   title: {
     flexGrow: 1,
-  }
+  },
+  appBar: {
+    [theme.breakpoints.up('sm')]: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
+    },
+  },
 });
-
-
-const drawerWidth = 240;
 
 class Bar extends Component {
   constructor(props) {
@@ -101,7 +105,7 @@ class Bar extends Component {
 
     return (
       <div className={classes.root}>
-      <AppBar color="primary" position="fixed">
+      <AppBar color="primary" position="fixed" className={classes.appBar}>
         <Toolbar>
           
           <IconButton
