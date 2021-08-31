@@ -84,12 +84,10 @@ function PageList(props) {
           <List>
           {
             Object.keys(pages).sort().map((key, index) => 
-            <ListItem button key={key}>
-            <ListItemIcon>
+            <ListItem key={key}>
             <div>
             <Typography component="legend">{`Page ${key}`}</Typography>
             <Rating
-            end='start'
             name={key}
             value={pages[key]}
             icon={<CheckCircleIcon fontSize="inherit" />}
@@ -106,9 +104,6 @@ function PageList(props) {
             }}
             />
             </div>
-            </ListItemIcon>
-            
-            
             </ListItem>)
           }
           </List>
