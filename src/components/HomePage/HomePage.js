@@ -11,7 +11,7 @@ import authentication from "../../services/authentication";
 import EmptyState from "../EmptyState";
 import BookList from "../BookList";
 
-import { ReactComponent as InsertBlockIllustration } from "../../illustrations/insert-block.svg";
+import { ReactComponent as InsertBlockIllustration } from "../../illustrations/count.svg";
 
 class HomePage extends Component {
   signInWithEmailLink = () => {
