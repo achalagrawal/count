@@ -164,7 +164,9 @@ function BookList(props) {
         </Hidden>
       </nav>
       <main className={classes.content}>
-        <h2>Book: {currentBook.name}</h2>
+        <h2>{currentBook.name} (<em>{currentBook.pages} pages</em>)</h2>
+        <Divider />
+        <br></br>
         <PageList
           book={currentBook}
           user={props.user}
