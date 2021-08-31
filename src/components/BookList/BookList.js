@@ -111,7 +111,10 @@ function BookList(props) {
       <div className={classes.toolbar} />
       <List dense>
         {bookList.map((book, index) => (
-          <ListItem button key={book.id} onClick={()=> {setBookIndex(index);props.mobileOpen.toggle()}}>
+          <ListItem button key={book.id} onClick={()=> {
+            setBookIndex(index);
+            if(props.mobileOpen.currentState) props.mobileOpen.toggle();
+            }}>
             <ListItemText primary={`${index+1}. ${book.name}`} />
           </ListItem>
         ))}
@@ -126,7 +129,7 @@ function BookList(props) {
     <div className={classes.root}>
       <CssBaseline />
      
-      <nav className={classes.drawer} aria-label="mailbox folders">
+      <nav className={classes.drawer} aria-label="list of books">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
           <Drawer
