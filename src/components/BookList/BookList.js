@@ -7,6 +7,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Divider from '@material-ui/core/Divider';
 import PageList from './PageList';
 
 const drawerWidth = 240;
@@ -109,9 +110,10 @@ function BookList(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
+      <Divider />
       <List dense>
         {bookList.map((book, index) => (
-          <ListItem button key={book.id} onClick={()=> {
+          <ListItem button divider key={book.id} onClick={()=> {
             setBookIndex(index);
             if(props.mobileOpen.currentState) props.mobileOpen.toggle();
             props.mobileOpen.setTitle(book.name);
