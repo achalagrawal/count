@@ -15,67 +15,67 @@ const bookList = [
   {
     id:"md1_vikalp",
     name:"Vikalp Adhyayan Bindu",
-    pages:100
+    pages:49
   },
   {
     id:"md2_parichay",
     name:"Ek Parichay",
-    pages:100
+    pages:122
   },
   {
     id:"md3_mvd",
     name:"Manav Vyavhar Darshan",
-    pages:100
+    pages:179
   },
   {
     id:"md4_karm",
     name:"Karm Darshan",
-    pages:100
+    pages:162
   },
   {
     id:"md5_abhyas",
     name:"Abhyas Darshan",
-    pages:100
+    pages:175
   },
   {
     id:"md6_anubhav",
     name:"Anubhav Darshan",
-    pages:100
+    pages:49
   },
   {
     id:"md7_janvad",
     name:"Vyavharatmak Janvad",
-    pages:100
+    pages:242
   },
   {
     id:"md8_bhautikvad",
     name:"Samadhanatmak Bhautikvad",
-    pages:100
+    pages:362
   },
   {
     id:"md9_adhyatmvad",
     name:"Anubhavatmak Adhyatmvad",
-    pages:100
+    pages:271
   },
   {
     id:"md10_samajshastra",
     name:"Vyavharvadi Samajshastra",
-    pages:100
+    pages:314
   },
   {
     id:"md11_arthashastra",
     name:"Avartansheel Arthshastra",
-    pages:100
+    pages:300
   },
   {
     id:"md12_manovigyan",
     name:"Sanchetnawadi Manovigyan",
-    pages:100
+    pages:254
   },
   {
     id:"md13_samvidhan",
     name:"Samvidhan",
-    pages:100
+    pages:304
   }
 ];
 
