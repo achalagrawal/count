@@ -152,7 +152,21 @@ const ShowError = () => (<EmptyState
           <Button 
           variant="contained" 
           color="primary"
-          onClick={() => { alert('clicked') }}>
+          onClick={() => { 
+            const obj = {};
+            const len = book.pages.toString().length;
+            for (let i=start;i<=end;i++)
+            {
+              obj[zeroPad(i,len)]=pages[zeroPad(i,len)]+1;
+            }
+            
+            firestore
+            .collection("users")
+            .doc(user.uid)
+            .collection("pages")
+            .doc(book.id)
+            .set(obj,{merge:true});
+          }}>
           Mark Read
           </Button>
           </div>
