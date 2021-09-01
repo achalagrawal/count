@@ -16,6 +16,8 @@ import TextField from '@material-ui/core/TextField';
 import EmptyState from "../EmptyState";
 import Loader from "../Loader";
 import { ReactComponent as ErrorIllustration } from "../../illustrations/error.svg";
+import multiple from "../../sounds/multiple.wav"
+import single from "../../sounds/single.wav"
 
 const zeroPad = (num, places) => String(num).padStart(places, '0');
 const ShowError = () => (<EmptyState
@@ -35,6 +37,10 @@ const ShowError = () => (<EmptyState
     </Fab>
   }
   />);
+
+  const playSound = audioFile => {
+    audioFile.play();
+  }
   
   const useStyles = makeStyles((theme) => ({
     list: {
@@ -61,6 +67,8 @@ const ShowError = () => (<EmptyState
     const [loading, setLoading] = useState(true);
     const [pages, setPages] = useState(null);
     const [error, setError] = useState(null);
+    const singleAudio = new Audio(single);
+    const multipleAudio = new Audio(multiple);
     
     const [start, setStart] = React.useState(1);
     const handleStart = (event) => {
@@ -166,6 +174,8 @@ const ShowError = () => (<EmptyState
             .collection("pages")
             .doc(book.id)
             .set(obj,{merge:true});
+
+            playSound(multipleAudio);
           }}>
           Mark Read
           </Button>
@@ -192,6 +202,8 @@ const ShowError = () => (<EmptyState
               .set({
                 [key]:newValue || 0
               },{ merge: true });
+
+              playSound(singleAudio);
             }}
             />
             </div>
