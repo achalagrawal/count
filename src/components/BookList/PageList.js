@@ -10,6 +10,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import EmptyState from "../EmptyState";
 import Loader from "../Loader";
 import { ReactComponent as ErrorIllustration } from "../../illustrations/error.svg";
@@ -34,12 +37,22 @@ const ShowError = () => (<EmptyState
   />);
   
   const useStyles = makeStyles((theme) => ({
-    root: {
+    list: {
       display: 'flex',
       flexWrap: 'wrap',
       justifyContent: 'space-around',
       overflow: 'hidden'
     },
+    multimark: {
+      '& .MuiTextField-root': {
+        margin: theme.spacing(1),
+        width: '10ch',
+      },
+    },
+    margin: {
+      margin: theme.spacing(1),
+      marginBottom: theme.spacing(2)
+    }
   }));
   
   function PageList(props) {
@@ -48,6 +61,22 @@ const ShowError = () => (<EmptyState
     const [loading, setLoading] = useState(true);
     const [pages, setPages] = useState(null);
     const [error, setError] = useState(null);
+    
+    const [start, setStart] = React.useState(1);
+    const handleStart = (event) => {
+      let input = parseInt(event.target.value);
+      if (input<1) input = 1;
+      if (input>book.pages) input = book.pages;
+      setStart(input);
+    };
+    
+    const [end, setEnd] = React.useState(book.pages);
+    const handleEnd = (event) => {
+      let input = parseInt(event.target.value);
+      if (input<1) input = 1;
+      if (input>book.pages) input = book.pages;
+      setEnd(input);
+    };
     
     useEffect(() => {
       return firestore
@@ -90,13 +119,50 @@ const ShowError = () => (<EmptyState
         .doc(book.id)
         .set(obj);
         // setPages(obj);
-      } else if (pages !== null) {
+      } else if (pages !== null) 
+      {
         return (
-          <div className={classes.root}>
-      <ImageList rowHeight={80} cols={2}>
-      {Object.keys(pages).sort().map((key, index) => 
-          <ImageListItem key={key} cols={1}>
           <div>
+          <div className={classes.multimark}>
+          <h3>Mark Multiple Pages</h3>
+          <TextField
+          id="start-number"
+          label="Start"
+          type="number"
+          value={start}
+          onChange={handleStart}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="filled"
+          />
+          <TextField
+          id="end-number"
+          label="End"
+          type="number"
+          value={end}
+          onChange={handleEnd}
+          InputLabelProps={{
+            shrink: true,
+          }}
+          variant="filled"
+          />
+          </div>
+          <div className={classes.margin}>
+          <Button 
+          variant="contained" 
+          color="primary"
+          onClick={() => { alert('clicked') }}>
+          Mark Read
+          </Button>
+          </div>
+          <Divider />
+          <h3>Mark Individual Pages</h3>
+          <div className={classes.list}>
+          <ImageList rowHeight={80} cols={2}>
+          {Object.keys(pages).sort().map((key, index) => 
+            <ImageListItem key={key} cols={1}>
+            <div>
             <Typography component="legend">{`Page ${key}`}</Typography>
             <Rating
             name={key}
@@ -115,22 +181,15 @@ const ShowError = () => (<EmptyState
             }}
             />
             </div>
-          </ImageListItem>
-        )}
-      </ImageList>
-    </div>
-
-
-
-            
-          )
+            </ImageListItem>
+            )}
+            </ImageList>
+            </div>
+            </div>
+            )
+          }
+          
+          return (<ShowError />)
         }
-        
-        return (
-          <ShowError />
-          )
-        }
-        
-        
         
         export default PageList;

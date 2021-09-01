@@ -166,7 +166,6 @@ function BookList(props) {
       <main className={classes.content}>
         <h2>{currentBook.name} (<em>{currentBook.pages} pages</em>)</h2>
         <Divider />
-        <br></br>
         <PageList
           book={currentBook}
           user={props.user}
