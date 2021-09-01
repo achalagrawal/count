@@ -113,7 +113,10 @@ function BookList(props) {
       <Divider />
       <List dense>
         {bookList.map((book, index) => (
-          <ListItem button divider key={book.id} onClick={()=> {
+          <ListItem button divider 
+            key={book.id} 
+            selected={bookIndex === index}
+            onClick={()=> {
             setBookIndex(index);
             if(props.mobileOpen.currentState) props.mobileOpen.toggle();
             props.mobileOpen.setTitle(book.name);
