@@ -76,6 +76,7 @@ function BookList(props) {
   const currentBook = bookList[bookIndex];
 
   return (
+    <div>
     <div className={classes.root}>
       <CssBaseline />
      
@@ -118,6 +119,7 @@ function BookList(props) {
           user={props.user}
           />
       </main>
+    </div>
     </div>
   );
 }

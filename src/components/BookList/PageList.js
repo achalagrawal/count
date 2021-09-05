@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { firestore } from "../../firebase";
 import { Fab, Box } from "@material-ui/core";
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+import AddIcon from '@material-ui/icons/Add';
 import Rating from '@material-ui/lab/Rating';
 import { Refresh as RefreshIcon } from "@material-ui/icons";
 import Typography from '@material-ui/core/Typography';
@@ -13,6 +12,8 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
 import EmptyState from "../EmptyState";
 import Loader from "../Loader";
 import { ReactComponent as ErrorIllustration } from "../../illustrations/error.svg";
@@ -49,6 +50,11 @@ const ShowError = () => (<EmptyState
       justifyContent: 'space-around',
       overflow: 'hidden'
     },
+    fab: {
+      position: 'fixed',
+      bottom: theme.spacing(2),
+      right: theme.spacing(2),
+    },
     multimark: {
       '& .MuiTextField-root': {
         margin: theme.spacing(1),
@@ -67,6 +73,7 @@ const ShowError = () => (<EmptyState
     const [loading, setLoading] = useState(true);
     const [pages, setPages] = useState(null);
     const [error, setError] = useState(null);
+    const [addDialog, setAddDialog] = useState(false);
     const singleAudio = new Audio(single);
     const multipleAudio = new Audio(multiple);
     
@@ -131,8 +138,9 @@ const ShowError = () => (<EmptyState
       {
         return (
           <div>
+            <Dialog onClose={() => setAddDialog(false)} aria-labelledby="simple-dialog-title" open={addDialog}>
+      <DialogTitle id="simple-dialog-title">Mark Multiple Pages</DialogTitle>
           <div className={classes.multimark}>
-          <h3>Mark Multiple Pages</h3>
           <TextField
           id="start-number"
           label="Start"
@@ -176,12 +184,14 @@ const ShowError = () => (<EmptyState
             .set(obj,{merge:true});
 
             playSound(multipleAudio);
+            setAddDialog(false);
           }}>
           Mark Read
           </Button>
           </div>
+          </Dialog>
           <Divider />
-          <h3>Mark Individual Pages</h3>
+          <br></br>
           <div className={classes.list}>
           <ImageList rowHeight={80} cols={2}>
           {Object.keys(pages).sort().map((key, index) => 
@@ -211,6 +221,15 @@ const ShowError = () => (<EmptyState
             )}
             </ImageList>
             </div>
+            <div className={classes.fab}>
+          <Fab 
+          color="primary"
+          aria-label="add"
+          onClick={() => setAddDialog(true)}
+          >
+        <AddIcon />
+      </Fab>
+      </div>
             </div>
             )
           }
