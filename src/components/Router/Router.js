@@ -13,7 +13,7 @@ class Router extends Component {
   render() {
 
     // Properties
-    const { user, roles, bar, mobileOpen } = this.props;
+    const { user, userData, roles, bar, mobileOpen } = this.props;
 
     // Functions
     const { openSnackbar } = this.props;
@@ -24,7 +24,7 @@ class Router extends Component {
 
         <Switch>
           <Route path="/" exact>
-            <HomePage user={user} openSnackbar={openSnackbar} mobileOpen={mobileOpen} />
+            <HomePage user={user} openSnackbar={openSnackbar} mobileOpen={mobileOpen} userData={userData} />
           </Route>
 
           <Route path="/admin">

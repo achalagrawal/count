@@ -291,6 +291,7 @@ class App extends Component {
               <Router
                 user={user}
                 roles={roles}
+                userData={userData}
                 bar={
                   <Bar
                     performingAction={performingAction}

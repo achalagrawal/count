@@ -9,6 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import PageList from './PageList';
+import { firestore } from "../../firebase";
 
 const drawerWidth = 240;
 
@@ -102,10 +103,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function BookList(props) {
+
+  let bookIndex = 0;
+  if (props.userData && props.userData.bookIndex) {
+    bookIndex = props.userData.bookIndex;
+  }
+
+  console.log(new Date());
+
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
-  const [bookIndex, setBookIndex] = React.useState(0);
 
   const drawer = (
     <div>
@@ -117,9 +125,15 @@ function BookList(props) {
             key={book.id} 
             selected={bookIndex === index}
             onClick={()=> {
-            setBookIndex(index);
+            bookIndex=index;
             if(props.mobileOpen.currentState) props.mobileOpen.toggle();
             props.mobileOpen.setTitle(book.name);
+            firestore
+              .collection("users")
+              .doc(props.user.uid)
+              .set(
+                {bookIndex:index}, {merge:true}
+              )
             }}>
             <ListItemText primary={`${index+1}. ${book.name}`} />
           </ListItem>
