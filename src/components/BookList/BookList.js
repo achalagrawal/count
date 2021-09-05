@@ -41,8 +41,6 @@ function BookList(props) {
     bookIndex = props.userData.bookIndex;
   }
 
-  console.log(new Date());
-
   const { window, bookList } = props;
   const classes = useStyles();
   const theme = useTheme();
