@@ -15,6 +15,7 @@ import LaunchScreen from "../LaunchScreen";
 import Bar from "../Bar";
 import Router from "../Router";
 import DialogHost from "../DialogHost";
+import bookList from '../../data/bookList';
 
 const initialState = {
   ready: false,
@@ -292,6 +293,7 @@ class App extends Component {
                 user={user}
                 roles={roles}
                 userData={userData}
+                bookList={bookList}
                 bar={
                   <Bar
                     performingAction={performingAction}
@@ -453,6 +455,11 @@ class App extends Component {
               if (!snapshot.exists || !data) {
                 return;
               }
+
+              if (data.bookIndex || data.bookIndex === 0)
+                this.setState({
+                  title:bookList[data.bookIndex].name
+                }) 
 
               authentication
                 .getRoles()

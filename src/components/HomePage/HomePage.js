@@ -70,14 +70,15 @@ class HomePage extends Component {
   };
 
   render() {
-    const { user } = this.props;
+    const { user, mobileOpen, userData, bookList } = this.props;
 
     if (user) {
       return (
         <BookList
-          mobileOpen={this.props.mobileOpen}
-          user={this.props.user}
-          userData={this.props.userData}
+          mobileOpen={mobileOpen}
+          user={user}
+          userData={userData}
+          bookList={bookList}
         />
       );
     }
