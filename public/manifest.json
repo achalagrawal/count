@@ -1,6 +1,7 @@
 {
   "short_name":"Count",
   "name": "Count",
+  "description": "Count the number of times you have completed reading pages in a book",
   "icons": [
     {
       "src": "favicon.png",
